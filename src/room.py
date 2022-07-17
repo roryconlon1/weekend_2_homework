@@ -1,8 +1,10 @@
 class Room:
-    def __init__(self, name):
+    def __init__(self, name, price, till):
         self.name = name
+        self.price = price
         self.songs = []
         self.patron = []
+        self.till = till
         
 
     def new_guest(self, guest):
@@ -24,3 +26,6 @@ class Room:
     def check_capacity(self):
         if len(self.patron) > 2:
             return self.patron.pop()
+
+    def customer_fee(self, price):
+        self.till += price

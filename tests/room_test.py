@@ -6,10 +6,10 @@ from src.song import Song
 class TestRoom(unittest.TestCase):
 
     def setUp(self):
-        self.room = Room("party room")
-        self.guest = Guest("Paul", 20)
-        self.guest_2 = Guest("James", 25)
-        self.guest_3 = Guest("Chris", 25)
+        self.room = Room("party room", 20, 1000)
+        self.guest = Guest("Paul", 20, 100)
+        self.guest_2 = Guest("James", 25, 120)
+        self.guest_3 = Guest("Chris", 25, 200)
         self.song = Song("Live it up", "Mental as anything")
         self.song_2 = Song("Dignity", "Deacon Blue")
 
@@ -45,4 +45,5 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(2, self.room.has_guest())
 
     def test_can_take_money(self):
-        self.room
+        self.room.customer_fee(20)
+        self.assertEqual(1020, self.room.till)
