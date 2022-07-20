@@ -24,8 +24,10 @@ class Room:
         return len(self.songs)
 
     def check_capacity(self):
-        if len(self.patron) > 2:
-            return self.patron.pop()
+        room_capacity = 2
+        if room_capacity >= len(self.patron):
+            return True
+        return False
 
     def customer_fee(self, price):
         self.till += price

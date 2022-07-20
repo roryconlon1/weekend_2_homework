@@ -32,18 +32,30 @@ class TestRoom(unittest.TestCase):
         self.room.add_song(self.song_2)
         self.assertEqual(2, self.room.has_song())
 
-    def test_can_stop_entrance_when_full(self):
-        self.room.new_guest(self.guest)
-        self.room.new_guest(self.guest_2)
-        self.room.check_capacity()
-        self.room.new_guest(self.guest_3)
-        self.room.check_capacity()
-        self.room.new_guest(self.guest)
-        self.room.check_capacity()
-        self.room.new_guest(self.guest_2)
-        self.room.check_capacity()
-        self.assertEqual(2, self.room.has_guest())
+
 
     def test_can_take_money(self):
         self.room.customer_fee(20)
         self.assertEqual(1020, self.room.till)
+
+    def test_room_capacity_false(self):
+        self.room.new_guest(self.guest)
+        self.room.new_guest(self.guest_2)
+        self.room.new_guest(self.guest_3)
+        self.assertEqual(False, self.room.check_capacity())
+
+    def test_room_capacity_true(self):
+        self.room.new_guest(self.guest)
+        self.assertEqual(True, self.room.check_capacity())
+
+    # def test_can_stop_entrance_when_full(self):
+    #     self.room.new_guest(self.guest)
+    #     self.room.new_guest(self.guest_2)
+    #     self.room.check_capacity()
+    #     self.room.new_guest(self.guest_3)
+    #     self.room.check_capacity()
+    #     self.room.new_guest(self.guest)
+    #     self.room.check_capacity()
+    #     self.room.new_guest(self.guest_2)
+    #     self.room.check_capacity()
+    #     self.assertEqual(2, self.room.has_guest())
